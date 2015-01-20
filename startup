@@ -1,0 +1,70 @@
+term.clear()
+term.setCursorPos(1,1)
+term.setTextColor(colors.yellow)
+print("js_crafterOS")
+term.setTextColor(1)
+if peripheral.getType("top") == "modem" then
+ rednet.open("top")
+end
+if peripheral.getType("bottom") == "modem" then
+ rednet.open("bottom")
+end
+if peripheral.getType("right") == "modem" then
+ rednet.open("right")
+end
+if peripheral.getType("left") == "modem" then
+ rednet.open("left")
+end
+if peripheral.getType("front") == "modem" then
+ rednet.open("front")
+end
+if peripheral.getType("back") == "modem" then
+ rednet.open("back")
+end
+
+--Lade Bildschirm--
+B,H = term.getSize()
+Breite = ""
+for i=1,B do
+ Breite = Breite.." "
+end
+os.pullEvent = os.pullEventRaw
+
+function LB()
+ write(" ")
+ sleep(0.1)
+ write(" ")
+ sleep(0.1)
+ write(" ")
+ sleep(0.1)
+end
+
+term.setBackgroundColor(512) 
+term.clear()
+term.setCursorPos(1,1) 
+Bild_1 = paintutils.loadImage("js_crafterOS/logo2.img") 
+for i=(-7),2 do
+ paintutils.drawImage(Bild_1,12,i)
+ sleep(0.05)
+ term.setBackgroundColor(512)
+ term.clear()
+end
+paintutils.drawImage(Bild_1,12,2)
+term.setBackgroundColor(512)
+term.setTextColor(1)
+term.setCursorPos(1,H)
+write(Breite)
+term.setCursorPos((B-15),H)
+write("(C) js_crafterHD")
+term.setBackgroundColor(colors.blue)
+term.setCursorPos(13,13)
+LB()
+LB()
+LB()
+LB()
+LB()
+LB()
+LB()
+LB()
+sleep(0.5) 
+shell.run("js_crafterOS/Anmelden")
