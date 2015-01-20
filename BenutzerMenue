@@ -1,0 +1,64 @@
+function loadSettings()
+ local file = fs.open("/js_crafterOS/Saves/UserSettings","r")
+ BenutzerName = file.readLine()
+ Passwort = file.readLine()
+ Versuche = file.readLine()
+ file.close()
+end
+
+function saveSettings()
+ local file = fs.open("/js_crafterOS/Saves/UserSettings","w")
+ file.writeLine(BenutzerName)
+ file.writeLine(Passwort)
+ file.writeLine(Versuche)
+ file.close()
+end 
+
+function Bildschrim()
+ term.setBackgroundColor(512)
+ term.clear()
+ term.setBackgroundColor(colors.blue)
+ term.setTextColor(1)
+ term.setCursorPos(1,1)
+ write("              Benutzer Einstellungen              ")
+ term.setBackgroundColor(colors.red)
+ write("X")
+ term.setBackgroundColor(colors.blue)
+ term.setCursorPos(1,19)
+ write("                                  by js_crafter2000")
+ ProfBild = paintutils.loadImage("/js_crafterOS/ProfilBild.img")
+ paintutils.drawImage(ProfBild,5,5)
+ term.setBackgroundColor(512)
+ term.setCursorPos(13,5)
+ write("BenutzerName :")
+ term.setCursorPos(13,8)
+ write("Passwort :")
+ term.setCursorPos(13,11)
+ write("Versuche :")
+ term.setBackgroundColor(256)
+ term.setTextColor(128)
+ term.setCursorPos(13,6)
+ write("                     ")
+ term.setCursorPos(13,9)
+ write("                     ")
+ term.setCursorPos(13,12)
+ write("                     ")
+ term.setCursorPos(5,9)
+ write("paint")
+end
+
+function Abfrage()
+ while true do
+  botton,X,Y = os.pullEvent("mouse_click")
+  
+  if X >= 13 and X <= 20 and button == 1 then
+   if Y == 6 then
+   
+   end
+  end
+  
+ end
+end
+
+Bildschrim()
+Abfrage()

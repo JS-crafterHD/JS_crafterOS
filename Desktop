@@ -1,0 +1,669 @@
+--Lade Icon Einstellungen
+IS = fs.open("/js_crafterOS/Saves/Iconsettings","r")
+
+
+--Text der unter den Icons steht
+IconText_1= IS.readLine()
+IconText_2= IS.readLine()
+IconText_3= IS.readLine()
+IconText_4= IS.readLine()
+IconText_5= IS.readLine()
+IconText_6= IS.readLine()
+
+--Die Programme die bei den Icons gestartet werden
+Programm_1= IS.readLine()
+Programm_2= IS.readLine()
+Programm_3= IS.readLine()
+Programm_4= IS.readLine()
+Programm_5= IS.readLine()
+Programm_6= IS.readLine()
+
+--Aktiverung/Deaktivierung der Icons
+Icon_1= IS.readLine()
+Icon_2= IS.readLine()
+Icon_3= IS.readLine()
+Icon_4= IS.readLine()
+Icon_5= IS.readLine()
+Icon_6= IS.readLine()
+
+IS.close()
+
+-----< Groesse >-----
+B,H = term.getSize()
+Breite = ""
+for i=1,B do
+ Breite = Breite.." "
+end
+
+
+-----< Abfragen >-----
+function NA()
+ A = 0
+ B = 0
+ C = 0
+end
+
+function Abfrage()
+ 
+ B,H = term.getSize()
+ Breite = ""
+ for i=1,B do
+  Breite = Breite.." "
+ end
+ 
+ uhr2 = os.startTimer(0.8)
+ 
+ while true do
+  event, button, X, Y = os.pullEvent()
+   
+   -- Zeit schreiben --
+  if event == "timer" then 
+   if button == uhr2 then
+    term.setBackgroundColor(colors.blue)
+    term.setTextColor(1)
+    term.setCursorPos((B-5),H)
+    pzeit2 = os.time()
+    write(textutils.formatTime(pzeit2,true))
+    Abfrage()
+    break
+   end
+  end
+  
+   -- Abfrage bei Bereich --
+  if event == "mouse_click" then 
+   
+   if X >=1 and X <=5 and Y==H and button == 1 then
+    term.setTextColor(1)
+    term.setBackgroundColor(32)
+    term.setCursorPos(1,H)
+    write("START")
+    sleep(0.1)
+    StartMenue() --# Startknopf
+    AbfrageStartMenue()
+    break 
+   end
+   
+   if X >=7 and X <=12 and Y==H and button == 1 then
+    term.setCursorPos(7,H)
+    term.setBackgroundColor(colors.yellow)
+    term.setTextColor(1)
+    write("Screen")
+    NA()
+    Screen()
+    break
+   end
+   
+   if Icon_1 == "true" then
+    if X >=2 and X <=8 and Y >=2 and Y <=5 and button == 1 then
+     NA()
+     shell.run("fg",Programm_1) --# Icon 1
+     shell.run("/js_crafterOS/desktop")
+     break
+    end
+    if X >=2 and X <=8 and Y >=2 and Y <=5 and button == 2 then
+     NA()
+     Rclick(X,Y,"I1")
+     break
+    end
+   end
+   
+   if Icon_2 == "true" then
+    if X >=2 and X <=8 and Y >=6 and Y <=9 and button == 1 then
+     NA()
+     shell.run("fg",Programm_2) --# Icon 2
+     shell.run("/js_crafterOS/desktop")
+     break
+    end
+    if X >=2 and X <=8 and Y >=6 and Y <=9 and button == 2 then
+     NA()
+     Rclick(X,Y,"I2")
+     break
+    end
+   end
+   
+   if Icon_3 == "true" then
+    if X >=2 and X <=8 and Y >=10 and Y <=13 and button == 1 then
+     NA()
+     shell.run("fg",Programm_3) --# Icon 3
+     shell.run("/js_crafterOS/desktop")
+     break
+    end
+    if X >=2 and X <=8 and Y >=10 and Y <=13 and button == 2 then
+     NA()
+     Rclick(X,Y,"I3")
+     break
+    end
+   end
+   
+   if Icon_4 == "true" then
+    if X >=2 and X <=8 and Y >=14 and Y <=17 and button == 1 then
+     NA()
+     shell.run("fg",Programm_4) -- Icon 4
+     shell.run("/js_crafterOS/desktop")
+     break
+    end
+    if X >=2 and X <=8 and Y >=14 and Y <=17 and button == 2 then
+     NA()
+     Rclick(X,Y,"I4")
+     break
+    end
+   end
+   
+   if Icon_5 == "true" then
+    if X >=10 and X <=16 and Y >=2 and Y <=5 and button == 1 then
+     NA()
+     shell.run("fg",Programm_5) -- Icon 5
+     shell.run("/js_crafterOS/desktop")
+     break
+    end
+    if X >=10 and X <=16 and Y >=2 and Y <=5 and button == 2 then
+     NA()
+     Rclick(X,Y,"I5")
+     break
+    end
+   end
+   
+   if Icon_6 == "true" then
+    if X >=10 and X <=16 and Y >=6 and Y <=9 and button == 1 then
+     NA()
+     shell.run("fg",Programm_6) -- Icon 6
+     shell.run("/js_crafterOS/desktop")
+     break
+    end
+    if X >=10 and X <=16 and Y >=6 and Y <=9 and button == 2 then
+     NA()
+     Rclick(X,Y,"I6")
+     break
+    end
+   end
+   
+   if X >=1 and X <=51 and Y >=1 and Y <=19 and button == 2 then
+    Rclick(X,Y,"Ba")
+    break
+   end
+   
+   if button == 2 then
+    Rclick(X,Y,"XX")
+    break
+   end
+  
+  end
+   
+ end
+end
+
+function AbfrageStartMenue()
+ A = 1
+ while A == 1 do
+  local event, button, X, Y = os.pullEvent("mouse_click")
+   XY= X..","..Y
+   -- Abfragen bei Fixpunkt --
+   --Abfragen bei Bereich --
+   
+   term.setTextColor(256)
+   term.setBackgroundColor(128)
+   
+   if X >=1 and X <=5 and Y==H and button == 1 then
+    term.setTextColor(1)
+    term.setBackgroundColor(32)
+    term.setCursorPos(1,H)
+    write("START")
+    sleep(0.1)
+    NA()    --# Startknopf
+    shell.run("js_crafterOS/desktop")
+    break
+   end
+   
+   if X >=7 and X <=12 and Y==H and button == 1 then
+    term.setCursorPos(7,H)
+    term.setTextColor(1)
+    term.setBackgroundColor(colors.yellow)
+    write("Screen")
+    NA()
+    Screen()
+    break
+   end
+ 
+   if X >=1 and X <=8 and Y==(H-1) and button == 1 then
+    term.setCursorPos(1,(H-1))
+    write("Shutdown ")
+    sleep(0.1)
+    os.shutdown() --# Beenden
+   end
+   
+   if X >=1 and X <=9 and Y==(H-2) and button == 1 then
+    term.setCursorPos(1,(H-2))
+    write("Icons     ")
+    sleep(0.1)
+    shell.run("edit","/js_crafterOS/Desktop") --# Edit OS
+    shell.run("/js_crafterOS/Desktop")    
+    break
+   end
+   
+   if X >=1 and X <=9 and Y==(H-3) and button == 1 then
+    term.setCursorPos(1,(H-3))
+    write("Benutzer  ")
+    sleep(0.1)
+    shell.run("/js_crafterOS/BenutzerMenue") --# Benutzer
+    shell.run("/js_crafterOS/Desktop")
+    break
+   end
+   
+   if X >=1 and X <=9 and Y==(H-4) and button == 1 then
+    term.setCursorPos(1,(H-4))
+    write("Eingabe   ")
+    sleep(0.1)
+    NA()
+    shell.run("/js_crafterOS/n_Mod") --#norm Mod
+   end
+   
+   if X >=1 and X <=9 and Y==(H-5) and button == 1 then
+    term.setCursorPos(1,(H-5))
+    write("Hilfe     ")
+    sleep(0.1)
+    HELP() --#Hilfe Menue
+   end
+   
+   if X ==10 and Y ==(H-1) and button ==1 then
+    term.setCursorPos(10,(H-1))
+    write(">")
+    sleep(0.1)
+    term.setTextColor(colors.black)
+    term.setBackgroundColor(256)
+    term.setCursorPos(10,(H-1))
+    write("<")
+    HerunterMenue() --#Neustart / Herunterfahren Meneu
+   end   
+    
+ end
+end
+-----< Designs >-----        
+function Desktop()
+ --Desktop
+ term.clear()
+ term.setCursorPos(1,1)
+ term.setBackgroundColor(512)
+ for i =1,(H-1) do
+  print(Breite)
+ end
+ --Icons
+ Bild_1 = paintutils.loadImage("/js_crafterOS/1.img")
+ Bild_2 = paintutils.loadImage("/js_crafterOS/2.img")
+ Bild_3 = paintutils.loadImage("/js_crafterOS/3.img")
+ Bild_4 = paintutils.loadImage("/js_crafterOS/4.img")
+ Bild_5 = paintutils.loadImage("/js_crafterOS/5.img")
+ Bild_6 = paintutils.loadImage("/js_crafterOS/6.img")
+ Hintergrund_Bild = paintutils.loadImage("/js_crafterOS/Hintergrund.img")
+ paintutils.drawImage(Hintergrund_Bild,1,1)
+ if Icon_1 == "true" then
+  paintutils.drawImage(Bild_1,3,2)
+ end
+ if Icon_2 == "true" then 
+  paintutils.drawImage(Bild_2,3,6)
+ end 
+ if Icon_3 == "true" then
+  paintutils.drawImage(Bild_3,3,10)
+ end 
+ if Icon_4 == "true" then
+  paintutils.drawImage(Bild_4,3,14)
+ end 
+ if Icon_5 == "true" then
+  paintutils.drawImage(Bild_5,11,2)
+ end 
+ if Icon_6 == "true" then
+  paintutils.drawImage(Bild_6,11,6)
+ end
+ --Icons_Text
+ term.setTextColor(1)
+ term.setBackgroundColor(512)
+ --
+ if Icon_1 == "true" then
+  term.setCursorPos(2,4)
+  write(IconText_1)
+ end 
+ if Icon_2 == "true" then 
+  term.setCursorPos(2,8)
+  write(IconText_2)
+ end 
+ if Icon_3 == "true" then
+  term.setCursorPos(2,12)
+  write(IconText_3)
+ end 
+ if Icon_4 == "true" then 
+  term.setCursorPos(2,16)
+  write(IconText_4)
+ end 
+ if Icon_5 == "true" then
+  term.setCursorPos(10,4)
+  write(IconText_5)
+ end 
+ if Icon_6 == "true" then
+  term.setCursorPos(10,8)
+  write(IconText_6)
+ end
+ --
+ term.setCursorPos(46,19)
+ term.setBackgroundColor(colors.blue)
+ term.setTextColor(1)
+ write("")
+ --Startleiste
+ term.setCursorPos(1,H)
+ term.setTextColor(1)
+ term.setBackgroundColor(8192)
+ write("START")
+ term.setBackgroundColor(2048)
+ write(" ")
+ term.setBackgroundColor(2)
+ term.setTextColor(1)
+ write("Screen")
+ term.setTextColor(1)
+ term.setBackgroundColor(2048)
+ write(Breite)
+ --Zeit
+ term.setTextColor(1)
+ term.setCursorPos((B-5),H)
+ pzeit = os.time()
+ zeit = textutils.formatTime(pzeit,true)
+ write(zeit)
+ write(" ")
+ --
+end
+
+function StartMenue()
+ --Popup
+ term.setTextColor(1)
+ term.setCursorPos(1,(H-6))
+ term.setBackgroundColor(128)
+ print("          ")
+ term.setTextColor(32768)
+ term.setBackgroundColor(256)
+ print("Hilfe     ")
+ print("Eingabe   ")
+ print("Benutzer  ")
+ print("Icons     ")
+ print("Shutdown >")
+ term.setBackgroundColor(colors.green)
+ term.setTextColor(1)
+ write("START")
+end
+
+function HELP()  --Hilfe menue
+  
+  --Designe
+  term.setBackgroundColor(512)
+  term.clear()
+  term.setTextColor(1)
+  term.setBackgroundColor(colors.blue)
+  term.setCursorPos(1,1)
+  write(Breite)
+  term.setCursorPos(1,1)
+  write("                   Hilfe Menue                    ")
+  B,H = term.getSize()
+  term.setCursorPos(B,1)
+  term.setBackgroundColor(colors.red)
+  write("X")
+  term.setBackgroundColor(colors.blue)
+  term.setCursorPos(1,H)
+  write(Breite)
+  term.setCursorPos((B-16),H)
+  write("by js_crafterHD")
+  term.setBackgroundColor(512)
+  term.setTextColor(1)
+  
+  --Hilfe Text
+  term.setCursorPos(1,3)
+  print("  Skype : Text austausch per rednet mit eimem      ")
+  print("          Chatpatner                               ")
+  print("  js_text : Texte shoener und uebersichtlicher     ")
+  print("            gestalten und weitergeben              ")
+  print("  editor : Hilfe fuer das ausfueren von programmen ")
+  print("  ???? : leere Icons die eingestellt werden koennen")
+  print("  Edit OS  : Icon Einstellungen                    ")
+  print("  Benutzer : Passwort und Benutzer Einstellungen   ")
+  print("                                                   ")
+  print("                                                   ")
+  print("                                                   ")
+  print("                                                   ")
+  print("  YouTube : JS_crafterHD                           ")
+  
+  while true do
+   local event,button,X,Y = os.pullEvent("mouse_click")
+   
+    if X == B and Y == 1 and button == 1 then
+     shell.run("/js_crafterOS/desktop")
+     A = 0
+     break
+    end
+  end
+end                        
+
+function HerunterMenue()
+ --Popup
+ term.setCursorPos(11,(H-4))
+ term.setBackgroundColor(128)
+ print("         ")
+ term.setBackgroundColor(256)
+ term.setTextColor(colors.black)
+ term.setCursorPos(11,(H-3))
+ print("Reboot   ")
+ term.setCursorPos(11,(H-2))
+ print("Shutdown ")
+ term.setCursorPos(11,(H-1))
+ print("Abmelden ")
+ 
+ --Abfrage bei Bereichen
+ C = 3
+ while C == 3 do
+  local event,button,X,Y = os.pullEvent("mouse_click")
+   
+   term.setTextColor(256)
+   term.setBackgroundColor(128)
+   
+   if X >=11 and X <=22 and Y ==(H-3) and button ==1 then
+    term.setCursorPos(11,(H-3))
+    write("Reboot   ")
+    sleep(0.1)
+    os.reboot()
+   end
+   
+   if X >=11 and X <=22 and Y ==(H-2) and button ==1 then
+    term.setCursorPos(11,(H-2))
+    write("Shutdown ")
+    sleep(0.1)
+    os.shutdown()
+   end
+   
+   if X >=11 and X <=22 and Y ==(H-1) and button ==1 then
+    NA()
+    term.setCursorPos(11,(H-1))
+    write("Abmelden ")
+    sleep(0.1)
+    NA()
+    shell.reboot()
+    break
+   end
+   
+   if X >=1 and X <=5 and Y ==H and button ==1 then
+    term.setTextColor(1)
+    term.setBackgroundColor(32)
+    term.setCursorPos(1,H)
+    write("START")
+    sleep(0.1)
+    NA()
+    shell.run("/js_crafterOS/desktop")
+    break
+   end
+   
+   if X >=7 and X <=12 and Y ==H and button ==1 then
+    term.setTextColor(1)
+    term.setBackgroundColor(colors.yellow)
+    term.setCursorPos(7,H)
+    write("Screen")
+    NA()
+    Screen()
+   end
+   
+   if X ==10 and Y ==(H-1) and button ==1 then
+    term.setCursorPos(10,(H-1))
+    write("<")
+    sleep(0.1)
+    B = 0
+    term.setBackgroundColor(512)
+    term.setCursorPos(11,(H-4))
+    print("                ")
+    term.setCursorPos(11,(H-3))
+    print("                ")
+    term.setCursorPos(11,(H-2))
+    print("                ")
+    term.setCursorPos(11,(H-1))
+    print("                ")
+    StartMenue()
+    AbfrageStartMenue()
+   end
+ end
+end
+
+function Rclick(X1,Y1,event)
+
+ function IconPrint(Xa,Ya,IconName)
+  term.setBackgroundColor(colors.blue)
+  term.setTextColor(1)
+  term.setCursorPos(Xa,Ya)
+  write(IconName.."    ")
+  term.setBackgroundColor(1)
+  term.setTextColor(colors.black)
+  Ya = Ya+1
+  term.setCursorPos(Xa,Ya)
+  write("paint    ")
+  Ya = Ya+1
+  term.setCursorPos(Xa,Ya)
+  write("open     ")
+ end
+ 
+ function IconAbf(Xa,Ya,IconPro,IconPic)
+  Ya = Ya+1
+  local event,button,X,Y = os.pullEvent("mouse_click")
+   if X >= Xa and X <= (Xa+9) and Y == Ya and button ==1 then
+    NA()
+    shell.run("paint",IconPic)
+   elseif X >= Xa and X <= (Xa+9) and Y == (Ya+1) and button ==1 then
+    NA()
+    shell.run(IconPro)
+   else
+    NA()
+   end
+ end
+ 
+ if event == "XX" then
+  term.setCursorPos(X1,Y1)
+  term.setBackgroundColor(colors.blue)
+  term.setTextColor(1)
+  write("Desktop  ")
+  Y1 = Y1+1
+  term.setBackgroundColor(1)
+  term.setTextColor(colors.red)
+  term.setCursorPos(X1,Y1)
+  write("no paint ")
+  Y1 = Y1+1
+  term.setCursorPos(X1,Y1)
+  write("no open  ")
+  sleep(1.0)
+  Desktop()
+ end
+ if event == "Ba" then
+  term.setBackgroundColor(colors.blue)
+  term.setTextColor(1)
+  X1 = X1-8
+  term.setCursorPos(X1,Y1)
+  write("Desktop  ")
+  Y1 = Y1+1
+  term.setBackgroundColor(1)
+  term.setTextColor(colors.black)
+  term.setCursorPos(X1,Y1)
+  write("paint    ")
+  Y1 = Y1+1
+  term.setTextColor(colors.red)
+  term.setCursorPos(X1,Y1)
+  write("no open  ")
+  --Abfrage
+  Xa = X1
+  Xb = X1+8
+  Ya = Y1-1
+  local event,button,X,Y = os.pullEvent("mouse_click")
+   
+   if X >= Xa and X <= Xb and Y == Ya and button == 1 then
+    shell.run("paint /js_crafterOS/Hintergrund.img")
+    NA()
+   else
+    NA()
+   end
+ 
+ end
+ 
+ if event == "I1" then
+  IconPrint(X1,Y1,IconText_1)
+  IconAbf(X1,Y1,Programm_1,"/js_crafterOS/1.img")
+ end
+ if event == "I2" then
+  IconPrint(X1,Y1,IconText_2)
+  IconAbf(X1,Y1,Programm_2,"/js_crafterOS/2.img")
+ end
+ if event == "I3" then
+  IconPrint(X1,Y1,IconText_3)
+  IconAbf(X1,Y1,Programm_3,"/js_crafterOS/3.img")
+ end
+ if event == "I4" then
+  IconPrint(X1,Y1,IconText_4)
+  IconAbf(X1,Y1,Programm_4,"/js_crafterOS/4.img")
+ end
+ if event == "I5" then
+  IconPrint(X1,Y1,IconText_5)
+  IconAbf(X1,Y1,Programm_5,"/js_crafterOS/5.img")
+ end
+ if event == "I6" then
+  IconPrint(X1,Y1,IconText_6)
+  IconAbf(X1,Y1,Programm_6,"/js_crafterOS/6.img")
+ end
+ shell.run("/js_crafterOS/desktop")
+end
+
+function Screen()
+ term.setTextColor(1)
+ term.setBackgroundColor(colors.blue)
+ term.setCursorPos(2,5)
+ write("                   Screen Manager                ")
+ term.setCursorPos(2,6)
+ write(" ")
+ term.setCursorPos(2,7)
+ write(" ")
+ term.setCursorPos(50,6)
+ write(" ")
+ term.setCursorPos(50,7)
+ write(" ")
+ term.setCursorPos(2,8)
+ write("                                                 ")
+ term.setBackgroundColor(colors.black)
+ term.setCursorPos(3,7)
+ write("                                               ")
+ term.setCursorPos(3,6)
+ write(" >                                             ")
+ term.setCursorPos(5,6)
+ NA()
+ shell.run("monitor right /js_crafterOS/desktop")
+ term.setCursorPos(4,7)
+ write(">Press any key...")
+ while true do
+  local event,button,X,Y = os.pullEvent()
+ 
+   if event == "key" then
+    shell.run("/js_crafterOS/desktop")
+    break
+   end
+ 
+ end
+end
+
+
+-----< Startausfuehrung >-----
+Desktop()
+Abfrage()

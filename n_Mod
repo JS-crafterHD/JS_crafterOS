@@ -1,0 +1,6 @@
+term.setBackgroundColor(32768)                                                                                                                                                                                      
+term.clear()
+term.setTextColor(colors.yellow)
+term.setCursorPos(1,1)
+print("js_crafterOS")
+term.setTextColor(1)

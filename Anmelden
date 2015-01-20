@@ -1,0 +1,66 @@
+--Lade Einstellungen
+file = fs.open("/js_crafterOS/Saves/UserSettings","r")
+Benutzername = file.readLine()
+Passwort = file.readLine()
+Versuche = tonumber(file.readLine())
+file.close()
+
+os.pullEvent = os.pullEventRaw
+B,H = term.getSize()
+Breite = ""
+for i=1,B do
+ Breite = Breite.." "
+end
+--Bildschirm malen--
+function Bildschirm() 
+ term.setBackgroundColor(512)
+ term.clear()
+ term.setTextColor(1)
+ term.setBackgroundColor(colors.blue)
+ term.setCursorPos(1,1)
+ write(Breite)
+ term.setCursorPos(1,1)
+ write("                    Anmeldung                      ")
+ term.setCursorPos(1,H)
+ write(Breite)
+ term.setTextColor(1)
+ profilBild = paintutils.loadImage("/js_crafterOS/ProfilBild.img")
+ paintutils.drawImage(profilBild,5,5)
+ term.setBackgroundColor(512)
+ term.setCursorPos(10,5)
+ write(Benutzername)
+ term.setCursorPos(10,7)
+ write("Passwort :")
+ term.setCursorPos(10,8)
+ term.setTextColor(128)
+ term.setBackgroundColor(256)
+ textutils.slowWrite("                  ")
+end
+
+Bildschirm()
+
+--Benutzername und Passwort abfrage--
+while Versuche > 0 do 
+ 
+ term.setCursorPos(10,8)
+ a = read("*")
+
+ if a == Passwort then
+  shell.run("js_crafterOS/desktop")
+  break
+ else 
+  Bildschirm()
+  Versuche = Versuche-1
+  term.setCursorPos(6,15)
+  term.setBackgroundColor(512)
+  term.setTextColor(1)
+  write("noch "..Versuche.." Versuche uebrig")
+  term.setTextColor(128)
+  term.setBackgroundColor(256)
+ end
+ 
+end
+
+if Versuche == 0 then
+ os.shutdown()
+end

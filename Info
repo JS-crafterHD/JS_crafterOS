@@ -1,0 +1,15 @@
+term.setBackgroundColor(colors.blue)
+term.clear()
+term.setTextColor(1)
+term.setCursorPos(1,1)
+print("Wen du Programme mit installiert hast findet du sie im Ordner 'js_productions'")
+print("\nIm Ordner js_crafterOS sind die Dateien und Programme des Betriebssystems gespeichert (bitte nur durch aufordereung des Betriebssystems veraenderen)")
+n = 15
+term.setBackgroundColor(256)
+term.setTextColor(128)
+for i=1,15 do
+ term.setCursorPos(24,12)
+ write(n.." ")
+ sleep(1)
+ n = n-1
+end
